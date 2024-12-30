@@ -2,7 +2,7 @@ import React from "react";
 import { GetTodoById } from "@/utils/actions";
 
 const Page = async ({ params }: { params: { id: string } }) => {
-  const { id } = await params;
+  const { id } = params;
   console.log("this is my slug :" + id);
 
   const todo = await GetTodoById(id);

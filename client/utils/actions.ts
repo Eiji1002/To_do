@@ -2,7 +2,6 @@
 
 import { Todo } from "@/lib/schemaTodo";
 import connectMongo from "@/lib/mongo";
-import { describe } from "node:test";
 
 export const CreteTodo = async ({
   title,
@@ -27,8 +26,8 @@ export const GetAllTodo = async () => {
 
 export const GetTodoById = async (id: string) => {
   await connectMongo();
-  const totoById = await Todo.findOne({ _id: id });
-  return totoById;
+  const todoById = await Todo.findOne({ _id: id });
+  return todoById;
 };
 
 export const DeleteTodo = async (id: string) => {
