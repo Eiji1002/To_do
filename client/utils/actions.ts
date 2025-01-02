@@ -35,3 +35,26 @@ export const DeleteTodo = async (id: string) => {
   const deletedTodo = await Todo.deleteOne({ _id: id });
   console.log("todo deleted :" + deletedTodo);
 };
+
+export const UpdateTodo = async ({
+  id,
+  title,
+  description,
+}: {
+  id: string;
+  title: string;
+  description: string;
+}) => {
+  const findTodo = await Todo.findOne({ _id: id });
+  if (findTodo) {
+    await Todo.updateOne(
+      { _id: id },
+      {
+        $set: {
+          title: title,
+          description: description,
+        },
+      }
+    );
+  }
+};

@@ -2,15 +2,18 @@
 import { DeleteTodo } from "@/utils/actions";
 import { CiTrash } from "react-icons/ci";
 import { FaPencilAlt } from "react-icons/fa";
-
+import { useRouter, useParams } from "next/navigation";
 export default async function TodoItem({ todos }: { todos: any[] }) {
+  const router = useRouter();
+  const { id } = useParams();
+
   const handleDelete = async (id: string) => {
     DeleteTodo(id);
     alert("todo deleted : " + id);
   };
 
   const handleEdit = async (id: string) => {
-    alert("todo edited : " + id);
+    router.push("/create/" + id);
   };
 
   return (
@@ -23,12 +26,14 @@ export default async function TodoItem({ todos }: { todos: any[] }) {
             </div>
             <div className="flex items-center gap-4">
               <CiTrash
-                className="text-2xl text-red-500 cursor-pointer"
+                className="text-red-500 cursor-pointer"
+                size={30}
                 onClick={() => handleDelete(todo._id)}
               />
               <FaPencilAlt
                 onClick={() => handleEdit(todo._id)}
-                className="text-2xl text-blue-500 cursor-pointer"
+                size={30}
+                className="text-blue-500 cursor-pointer"
               />
             </div>
           </div>
